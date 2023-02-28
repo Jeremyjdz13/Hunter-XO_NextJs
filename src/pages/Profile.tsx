@@ -1,16 +1,15 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../components/Header/Header'
+import { useAuth } from '../pages/api/AuthContext'
 
-export default function Home() {
+export default function Profile() {
   const router = useRouter();
+  const { currentUser } = useAuth()
 
   useEffect(() => {
-    // your logic to check if the user is signed in
-    // if not, redirect them to the sign-in page
-    // example:
-    const signedIn = true; // replace this with your actual logic
-    if (!signedIn) {
+  
+    if (!currentUser) {
       router.push('/');
     }
   }, []);

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import SignIn from '../components/Auth/SignIn'
+import SignIn from './SignIn'
 
 export default function Home() {
 
@@ -8,7 +8,7 @@ export default function Home() {
       <Head>
         <title>Hunter XO</title>
       </Head>
-      <SignIn></SignIn>
+      <SignIn />
     </>
   )
 }

@@ -5,9 +5,9 @@ import { auth } from '../../config/firebase';
 interface AuthContextValue {
   currentUser: Auth.User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<Auth.UserCredential>;
-  signup: (email: string, password: string, displayName: string) => Promise<Auth.UserCredential>;
-  logout: () => Promise<void>;
+  signIn: (email: string, password: string) => Promise<Auth.UserCredential>;
+  signUp: (email: string, password: string, displayName: string) => Promise<Auth.UserCredential>;
+  signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   updateEmail: (email: string) => Promise<void>;
   updatePassword: (password: string) => Promise<void>;
@@ -34,7 +34,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [currentUser, setCurrentUser] = useState<Auth.User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  async function signup(email: string, password: string, displayName: string) {
+  async function signUp(email: string, password: string, displayName: string) {
     const userCredential = await Auth.createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user
     
@@ -47,11 +47,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return userCredential;
   }
 
-  function login(email: string, password: string) {
+  function signIn(email: string, password: string) {
     return Auth.signInWithEmailAndPassword(auth, email, password);
   }
 
-  function logout() {
+  function signOut() {
     return auth.signOut();
   }
 
@@ -63,14 +63,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
     if(currentUser){
        return Auth.updateEmail(currentUser, email);
     }
-   throw new Error('user is not authenticated')
+   throw new Error('User is not authenticated.')
   }
 
   function updatePassword(password: string) {
     if(currentUser){
      return Auth.updatePassword(currentUser, password); 
     }
-    throw new Error('user is not authenticated')
+    throw new Error('User is not authenticated.')
   }
 
   async function updateDisplayName(newDisplayName: string) {
@@ -95,9 +95,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const value: AuthContextValue = {
     currentUser,
     loading,
-    login,
-    signup,
-    logout,
+    signIn,
+    signUp,
+    signOut,
     resetPassword,
     updateEmail,
     updatePassword,

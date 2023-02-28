@@ -1,13 +1,13 @@
 import { useState, useRef } from 'react';
-import { useAuth } from '../../pages/api/AuthContext';
+import { useAuth } from './api/AuthContext';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { signInSignUpStyles } from './SignInSignUpStyles';
+import { signInSignUpStyles } from '../styles/SignInSignUpStyles';
 
-export default function Login() {
+export default function SignIn() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const { login } = useAuth();
+  const { signIn } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -19,8 +19,8 @@ export default function Login() {
       try {
         setError('');
         setLoading(true);
-        await login(emailRef.current.value, passwordRef.current.value);
-        router.push('/');
+        await signIn(emailRef.current.value, passwordRef.current.value);
+        router.push('/Profile');
       } catch {
         setError('Failed to log in');
       }
@@ -29,9 +29,10 @@ export default function Login() {
     }
   }
 
+
   return (
     <div style={signInSignUpStyles.container}>
-        <div style={signInSignUpStyles.title}>Sign In</div>
+        <div className="anotherDanger" style={signInSignUpStyles.title}>Sign In</div>
         {error && <div>{error}</div>}
         <form style={signInSignUpStyles.formContainer} onSubmit={handleSubmit}>
             <div style={signInSignUpStyles.formFieldContainer}>
@@ -50,10 +51,10 @@ export default function Login() {
           
         </form>
         <div style={signInSignUpStyles.linkContainer}>
-            <Link href="/ForgotPassword">Forgot Password?</Link>
+            <Link className="anotherDanger" style={signInSignUpStyles.links} href="/ForgotPassword">Forgot Password?</Link>
         </div>
         <div style={signInSignUpStyles.linkContainer}>
-            Need an account? <Link href="../Auth/SignUp">Sign Up</Link>
+            Need an account? <Link className="anotherDanger" style={signInSignUpStyles.links} href="/SignUp">Sign Up</Link>
         </div>
     </div>
   );

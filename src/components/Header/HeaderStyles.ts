@@ -1,9 +1,4 @@
-import localFont  from '@next/font/local'
 import { CSSProperties } from 'react';
-
-const anotherDangerFont = localFont({
-    src: './fonts/another_danger/AnotherDanger.otf'
-});
 
 interface HeaderStyles {
     container: CSSProperties;
@@ -32,7 +27,6 @@ export const headerStyles: HeaderStyles = {
         border: 'red solid 1px'
     },
     title: {
-        fontFamily: anotherDangerFont.style.fontFamily,
         fontSize: "2.5rem",
         padding: '5px',
         color: 'hsl(0,100%,50%)',

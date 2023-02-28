@@ -1,9 +1,6 @@
 import { CSSProperties } from "react";
 import localFont from '@next/font/local'
 
-const anotherDangerFont = localFont({
-    src: '../Header/fonts/another_danger/AnotherDanger.otf'
-})
 interface SignInSignUpStyles {
     container: CSSProperties;
     title: CSSProperties;
@@ -30,7 +27,6 @@ export const signInSignUpStyles: SignInSignUpStyles = {
 
     },
     title: {
-        fontFamily: anotherDangerFont.style.fontFamily,
         fontSize: '32px',
         padding: '15px',
         color: 'hsl(0,100%,50%)',
@@ -73,6 +69,7 @@ export const signInSignUpStyles: SignInSignUpStyles = {
         margin: '15px'
     },
     links: {
-       
+        color: 'hsl(0,100%,50%)',
+        textShadow: '3px 3px hsl(0,100%, 10%)',
     }
 }
