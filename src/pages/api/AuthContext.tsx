@@ -83,14 +83,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
     await auth.currentUser?.reload();
   }
 
-  useEffect(() => auth.onAuthStateChanged((user) => {
-    if (!user) {
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
       setLoading(false);
-      return;
-    }
-    setCurrentUser(user);
-    setLoading(false);
-  }), []);
+    });
+
+    return unsubscribe;
+  }, []);
 
   const value: AuthContextValue = {
     currentUser,

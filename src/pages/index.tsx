@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import SignIn from './SignIn'
+import SignIn from './auth/SignIn'
 
-export default function Home() {
+export default function Index() {
 
   return (
     <>

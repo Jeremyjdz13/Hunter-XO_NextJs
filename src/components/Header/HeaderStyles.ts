@@ -3,16 +3,19 @@ import { CSSProperties } from 'react';
 interface HeaderStyles {
     container: CSSProperties;
     containerLeft: CSSProperties;
+    containerCenter: CSSProperties;
     titleContainer: CSSProperties;
     title: CSSProperties;
     containerRight: CSSProperties;
+    buttonContainer: CSSProperties;
+    button: CSSProperties;
     [key: string]: CSSProperties | any;
 }
 
 export const headerStyles: HeaderStyles = {
     container: {
         display: "grid",
-        gridTemplateColumns: '30% 40% 30%',
+        gridTemplateColumns: '20% 30% 15% 35%',
         width: '100%',
         backgroundColor: "hsla(0, 100%, 0%, 0.7)",
         border: "hsla(0, 100%, 0%, 0.9) solid 1px",
@@ -20,23 +23,37 @@ export const headerStyles: HeaderStyles = {
         color: 'floralwhite',
     },
     containerLeft: {
-        border: 'red solid 1px',
-        padding: '15px'
+        padding: '15px',
+        textAlign: 'center',
+        borderLeft: 'hsl(8, 13%, 35%) 1px solid'
     },
-    titleContainer: {
-        border: 'red solid 1px'
-    },
-    title: {
-        fontSize: "2.5rem",
-        padding: '5px',
-        color: 'hsl(0,100%,50%)',
-        textShadow: '3px 3px hsl(0,100%, 10%)',
-        textAlign: 'center'
+    containerCenter: {
+        padding: '15px',
+        textAlign: 'center',
+        borderLeft: 'hsl(8, 13%, 35%) 1px solid'
     },
     containerRight: {
-        border: 'red solid 1px',
         textAlign: 'right',
-        padding: '15px'
+        padding: '15px',
+        borderLeft: 'hsl(8, 13%, 35%) 1px solid'
+
+    },
+    titleContainer: {
+    },
+    title: {
+        fontSize: "2rem",
+        padding: '5px 15px',
+        color: 'hsl(0,100%,50%)',
+        textShadow: '3px 3px hsl(0,100%, 10%)',
+        textAlign: 'center',
+    },
+    buttonContainer: {
+
+    },
+    button: {
+        marginBottom: "0.5rem",
+        fontSize: "12px",
+        fontWeight: 500,
     },
     '@media (max-width: 679px)': {
         container: {
